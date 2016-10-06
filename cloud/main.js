@@ -38,10 +38,14 @@ Parse.Cloud.beforeSave("Tag", function(request, response) {
  
   
 Parse.Cloud.define("uploadStoresToAlgolia", function(request, response) {
+	if(request.params.key != algoliaApiKey)
+		return;
     indexClass('Store', storeIndex, response, getStoreObjectForAlgolia);
 });
  
 Parse.Cloud.define("uploadProductsToAlgolia", function(request, response) {
+	if(request.params.key != algoliaApiKey)
+		return;
     indexClass('StoreItem', productIndex, response, getProductObjectForAlgolia);
 });
 
